@@ -1,18 +1,22 @@
 const environments = {
     local: "http://www.impactguru.localhost",
-    staging: "https://staging.impactguru.com",
+    stage7: "https://stage7.igstg.com",
     live: "https://www.impactguru.com"
 };
 
 function getCurrentEnvironment(url) {
     if (url.includes("impactguru.localhost")) {
         return "local";
-    } else if (url.includes("staging.impactguru.com")) {
-        return "staging";
+    } else if (url.includes("https://stage7.igstg.com")) {
+        return "stage7";
     } else if (url.includes("www.impactguru.com")) {
         return "live";
     }
     return null;
+}
+
+function capitalizeLetter(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1)
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -23,8 +27,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     const currentEnv = getCurrentEnvironment(tab.url);
     const urlPath = new URL(tab.url).pathname + new URL(tab.url).search;
 
+    const buttonsContainer = document.getElementById('buttons');
+
     Object.keys(environments).forEach(env => {
-        const button = document.getElementById(env);
+        const button = document.createElement('button');
+        button.id = env;
+        button.textContent = capitalizeLetter(env);
 
         if (currentEnv === env) {
             button.classList.add('active');
@@ -36,5 +44,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             chrome.tabs.update(tab.id, { url: targetUrl });
             window.close();
         });
+
+        buttonsContainer.appendChild(button);
     });
 });
