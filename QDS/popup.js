@@ -5,14 +5,6 @@ const environments = {
 };
 
 function getCurrentEnvironment(url) {
-    // if (url.includes("impactguru.localhost")) {
-    //     return "local";
-    // } else if (url.includes("https://stage7.igstg.com")) {
-    //     return "stage7";
-    // } else if (url.includes("www.impactguru.com")) {
-    //     return "live";
-    // }
-
     for (curEnv in environments) {
         if (url.includes(environments[curEnv])) return curEnv;
     }
