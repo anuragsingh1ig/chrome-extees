@@ -1,5 +1,11 @@
 const environments = {
     local: "http://www.impactguru.localhost",
+    stage1: "https://stage3.igstg.com",
+    stage2: "https://stage3.igstg.com",
+    stage3: "https://stage3.igstg.com",
+    stage4: "https://stage3.igstg.com",
+    stage5: "https://stage3.igstg.com",
+    stage6: "https://stage3.igstg.com",
     stage7: "https://stage7.igstg.com",
     live: "https://www.impactguru.com"
 };
